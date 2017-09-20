@@ -1,0 +1,1 @@
+export const START_UP = 'start_up';
