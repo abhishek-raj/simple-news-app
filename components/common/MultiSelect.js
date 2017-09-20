@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, ListView } from 'react-native';
 
 class MultiSelect extends Component {
 	render() {
