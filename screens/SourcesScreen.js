@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import MultiSelect from '../components/common/MultiSelect';
+import MultiSelect from '../components/MultiSelect';
 
 class SourcesScreen extends Component {
 	render() {

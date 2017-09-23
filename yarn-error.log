@@ -1,0 +1,47 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn install
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.0.2
+
+Node version: 
+  6.11.2
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "simple-news-app",
+    "version": "0.0.0",
+    "description": "Hello Expo!",
+    "author": null,
+    "private": true,
+    "main": "node_modules/expo/AppEntry.js",
+    "dependencies": {
+      "axios": "^0.16.2",
+      "expo": "^20.0.0",
+      "react": "16.0.0-alpha.12",
+      "react-native": "https://github.com/expo/react-native/archive/sdk-20.0.0.tar.gz",
+      "react-navigation": "^1.0.0-beta.11",
+      "react-redux": "^5.0.6",
+      "redux": "^3.7.2",
+      "redux-thunk": "^2.2.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: https://registry.yarnpkg.com/axios: ETIMEDOUT
+      at Timeout._onTimeout (/usr/local/lib/node_modules/yarn/lib/cli.js:118034:19)
+      at ontimeout (timers.js:386:14)
+      at tryOnTimeout (timers.js:250:5)
+      at Timer.listOnTimeout (timers.js:214:5)
