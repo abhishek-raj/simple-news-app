@@ -1,192 +1,50 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { MultiSelect, Header } from '../components/common';
+import { View, Text, Platform } from 'react-native';
+import { MultiSelect, Header, Spinner } from '../components/common';
+import { connect } from 'react-redux';
+import { AppLoading } from 'expo';
+
+import{ checkSources, getSources, setSources } from '../actions';
 
 class SourcesScreen extends Component {
+	
+	static navigationOptions = {
+    	title: 'Welcome',
+  	};
+
+	componentWillMount() {
+		this.props.checkSources();
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.sources != '' && nextProps.sources != undefined && nextProps.sources != null) {
+			this.props.navigation.navigate('newsFlow');
+		} else if(nextProps.sourcesNotFound) {
+			this.props.getSources();
+		}
+	}
 
 	onSubmit = (data) => {
-		console.log(data);
+		this.props.setSources(data);
 	}
 
 	render() {
-		var data =  [{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		},{
-			id: '1234',
-			name: 'abhishek',
-			description: 'Something'
-		}, {
-			id: '12334',
-			name: 'abhishek1',
-			description: 'Something1'
-		}];
+		if(this.props.sourcesNotFound === undefined || !this.props.sourcesNotFound ) {
+			return <AppLoading />;
+		}
 
+		if(this.props.showLoading) {
+			return <Spinner />;
+		}
+
+		let data = [];
+		for(source of this.props.allSources) {
+			data.push({
+				id: source.id,
+				description: source.description,
+				name: source.name
+			});
+		}
 		return (
 			<View style={styles.container}>
 				<Header headerText={"Sources"} />
@@ -204,4 +62,15 @@ const styles = {
 		flex: 1
 	}
 }
-export default SourcesScreen;
+
+const mapStateToProps = state => {
+	return {
+		sourcesNotFound: state.news.sourcesNotFound,
+		allSources: state.news.allSources,
+		sources: state.news.sources,
+		errorMessage: state.news.errorMessage,
+		showLoading: state.news.showLoading
+	};
+};
+
+export default connect(mapStateToProps, { checkSources, getSources, setSources })(SourcesScreen);

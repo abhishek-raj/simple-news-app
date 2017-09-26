@@ -17,8 +17,16 @@ export default class App extends React.Component {
         screen: StackNavigator({
           newslist: { screen: NewsListScreen },
           news: { screen: NewsScreen }
-        }) 
+        },) 
       }
+    },
+    {
+      navigationOptions: {
+        tabBarVisible: false
+      },
+      lazy: true,
+      swipeEnabled: false,
+      backBehavior: 'none'
     });
 
     return (

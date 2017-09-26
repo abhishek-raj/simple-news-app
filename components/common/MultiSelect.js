@@ -18,7 +18,7 @@ class MultiSelect extends Component {
 	}
 
 	selectItem = (id) => {
-		var newDataSource = [];
+		let newDataSource = [];
 
 		for(item of this.state.data) {
 			if(item.id === id && item.selected === 1) {
@@ -42,14 +42,17 @@ class MultiSelect extends Component {
 	};
 
 	renderRow = (item) => {
-		return <MultiSelectItem 
-			item={item}
-			selectItem={this.selectItem}
-		/>;
+		return (
+			<MultiSelectItem 
+				item={item}
+				selectItem={this.selectItem}
+			/>
+		);
 	};
 
-	selectedItems = (cb) => {
-		var newDataSource = [];
+	selectedItems = () => {
+		console.log('something');
+		let newDataSource = [];
 		for(item of this.state.data) {
 			if(item.selected === 1) {
 				newDataSource.push(
@@ -57,7 +60,7 @@ class MultiSelect extends Component {
 				);
 			}
 		}
-		cb(newDataSource);
+		this.props.onSubmit(newDataSource);
 	};
 
 	render() {
@@ -70,7 +73,7 @@ class MultiSelect extends Component {
 					/>
 				</View>
 				<View style={ styles.buttonContainer }>
-					<Button onPress={this.selectedItems(this.props.onSubmit)} >
+					<Button onPress={this.selectedItems} >
 						<Text>
 							Submit
 						</Text>
@@ -87,7 +90,8 @@ const styles = {
 		paddingBottom: 5
 	},
 	listViewContainer: {
-		flex: 8
+		flex: 8,
+		paddingBottom: 6
 	},
 	buttonContainer:{
 		flex: 1

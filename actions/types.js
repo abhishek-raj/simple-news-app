@@ -1,1 +1,9 @@
-export const START_UP = 'start_up';
+export const SOURCES_FOUND = 'sources_found';
+export const SOURCES_NOT_FOUND = 'sources_not_found';
+export const FETCH_SOURCES_START = 'fetch_sources_start';
+export const FETCH_SOURCES_SUCCESS = 'fetch_sources_success';
+export const FETCH_SOURCES_FAIL = 'fetch_sources_fail';
+export const CHANGE_CURRENT_SOURCE_TAB = 'change_current_source_tab';
+export const FETCH_NEWSLIST_START = 'fetch_newslist_start';
+export const FETCH_NEWSLIST_SUCCESS = 'FETCH_NEWSLIST_SUCCESS';
+export const FETCH_NEWSLIST_FAIL = 'FETCH_NEWSLIST_FAIL';
