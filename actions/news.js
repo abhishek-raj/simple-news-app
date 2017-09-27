@@ -19,8 +19,10 @@ export const checkSources = () => async dispatch => {
 		let sources = await AsyncStorage.getItem('sources');
 		console.log("Sources: ",sources);
 		if(sources) {
+			console.log("Calling this", SOURCES_FOUND);
 			dispatch({ type: SOURCES_FOUND, payload: JSON.parse(sources) });
 		} else {
+			console.log("Calling this", SOURCES_NOT_FOUND);
 			dispatch({ type: SOURCES_NOT_FOUND, payload: '' });
 		}
 	}
@@ -31,8 +33,10 @@ export const checkSources = () => async dispatch => {
 
 export const getSources = () => async dispatch => {
 	try {
+		console.log("Calling this", FETCH_SOURCES_START);
 		dispatch({ type: FETCH_SOURCES_START, payload: '' });
 		let response = await axios.get(API_URL + '/sources');
+		console.log("Calling this", FETCH_SOURCES_SUCCESS);
 		dispatch({ type: FETCH_SOURCES_SUCCESS, payload: response.data.sources});
 	}
 	catch(err) {

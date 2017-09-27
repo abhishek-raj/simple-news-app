@@ -29,11 +29,13 @@ class SourcesScreen extends Component {
 	}
 
 	render() {
-		if(this.props.sourcesNotFound === undefined || !this.props.sourcesNotFound ) {
+		if(this.props.sourcesNotFound === undefined ) {
+			console.log("Inside Apploading");
 			return <AppLoading />;
 		}
 
 		if(this.props.showLoading) {
+			console.log("Inside Spinner");
 			return <Spinner />;
 		}
 
@@ -45,6 +47,7 @@ class SourcesScreen extends Component {
 				name: source.name
 			});
 		}
+		console.log("Inside MultiSelect");
 		return (
 			<View style={styles.container}>
 				<Header headerText={"Sources"} />
